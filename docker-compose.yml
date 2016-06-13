@@ -1,0 +1,28 @@
+php:
+    build: docker/php-fpm
+    expose:
+        - "9000"
+    volumes:
+        - .:/var/www/symfony
+    links:
+        - db
+nginx:
+    build: docker/nginx
+    ports:
+        - "8081:80"
+    links:
+        - php
+    volumes_from:
+        - php
+    volumes:
+        - ./logs/nginx/:/var/log/nginx
+
+db:
+    image: mysql
+    ports:
+        - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: symfony
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root

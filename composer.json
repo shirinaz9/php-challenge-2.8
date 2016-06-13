@@ -4,7 +4,9 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "": "src/",
+            "PhpChallenge\\Bundle\\": "src/PhpChallenge/Bundle/",
+            "PhpChallenge\\Component\\": "src/PhpChallenge/Component/"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -20,7 +22,8 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "friendsofsymfony/user-bundle": "^1.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

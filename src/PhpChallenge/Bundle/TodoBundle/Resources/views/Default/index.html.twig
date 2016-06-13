@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div>
+    <h1>Welcome to the Todo List</h1>
+    <a href="{{ path('fos_user_security_login') }}">Login</a>
+    <a href="{{ path('fos_user_security_register') }}">Register</a>
+</div>
+{% endblock %}
