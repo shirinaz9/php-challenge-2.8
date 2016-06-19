@@ -5,6 +5,8 @@ use Doctrine\ORM\EntityRepository;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use PhpChallenge\Bundle\TodoBundle\Entity\TodoList;
+use PhpChallenge\Bundle\UserBundle\Entity\User;
 
 
 class RestController extends FOSRestController
@@ -37,6 +39,21 @@ class RestController extends FOSRestController
      */
     public function getListAction()
     {
-        return $this->todoListRepository->findOneBy(['id' => 1]);
+        /** @var User $user */
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $em = $this->getDoctrine()->getManagerForClass('PhpChallenge\Bundle\TodoBundle\Entity\TodoList');
+        $repo = $em->getRepository('PhpChallenge\Bundle\TodoBundle\Entity\TodoList');
+        $list = $repo->findOneBy(['owner' => $user->getId()]);
+
+        if (!$list) {
+            //create default list if it doesn't exist
+            $list = new TodoList();
+            $list->setOwner($user);
+            $em->persist($list);
+            $em->flush();
+        }
+
+        return $list;
     }
 }

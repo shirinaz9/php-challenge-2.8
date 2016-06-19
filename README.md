@@ -41,6 +41,8 @@ todo:
 2. put authentication in front of rest apis
 3. create interface for todo list
 
+known issues:
+============
 
-
+1. Docker sometimes gives a "bus error" error message. This happens sporadically. Rerunning the command will usually make it work.
 

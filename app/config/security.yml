@@ -11,16 +11,24 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-        main:
-            pattern: ^/
-            form_login:
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
-            logout:       true
-            anonymous:    true
+        api:
+            pattern: ^/api/
+            logout: false
+            anonymous: false
+            guard:
+                authenticators:
+                    - phpchallenge_user_bundle.token_authenticator
+#        main:
+#            pattern: ^/
+#            form_login:
+#                provider: fos_userbundle
+#                csrf_token_generator: security.csrf.token_manager
+#            logout:       true
+#            anonymous:    true
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/api/, role: ROLE_USER }

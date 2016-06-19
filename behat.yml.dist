@@ -19,6 +19,8 @@ default:
             paths: [ %paths.base%/src/PhpChallenge/Bundle/TodoBundle/Features ]
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
+                - PhpChallenge\Bundle\TodoBundle\Behat\TodoContext
+                - PhpChallenge\Bundle\UserBundle\Behat\UserContext
                 - behatch:rest
                 - behatch:json
 

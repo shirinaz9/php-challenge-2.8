@@ -3,6 +3,8 @@ services:
     class: PhpChallenge\Bundle\TodoBundle\Controller\RestController
     arguments:
       - '@php_challenge_todo.repository.todolist'
+    calls:
+      - [setContainer, ['@service_container']]
 
   php_challenge_todo.repository.todolist:
       class: Doctrine\ORM\EntityRepository
