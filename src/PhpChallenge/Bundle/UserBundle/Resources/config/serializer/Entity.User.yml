@@ -1,4 +1,4 @@
-PhpChallenge\Bundle\TodoBundle\Entity\TodoList:
+PhpChallenge\Bundle\UserBundle\Entity\User:
     exclusion_policy: ALL
     properties:
         id:

@@ -1,12 +1,10 @@
 <?php
 namespace PhpChallenge\Bundle\TodoBundle\Entity;
 
-use PhpChallenge\Bundle\UserBundle\Entity\User;
-
 class TodoItem extends \PhpChallenge\Component\Todo\TodoItem
 {
     protected $id;
-    protected $owner;
+    protected $list;
 
     /**
      * @return int
@@ -26,21 +24,5 @@ class TodoItem extends \PhpChallenge\Component\Todo\TodoItem
         return $this;
     }
 
-    /**
-     * @return User
-     */
-    public function getOwner()
-    {
-        return $this->owner;
-    }
-
-    /**
-     * @param User $owner
-     * @return $this
-     */
-    public function setOwner(User $owner)
-    {
-        $this->owner = $owner;
-        return $this;
-    }
+    
 }

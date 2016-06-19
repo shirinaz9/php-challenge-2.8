@@ -1,0 +1,24 @@
+PhpChallenge\Bundle\TodoBundle\Entity\TodoItem:
+    type:  entity
+    table: todo_item
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    properties:
+        description:
+            type: string
+            nullable: false
+        status:
+            type: string
+            default: 'active'
+            nullable: false
+    manyToOne:
+        list:
+            targetEntity: PhpChallenge\Bundle\TodoBundle\Entity\TodoList
+            inversedBy: items
+            joinColumn:
+                name: list_id
+                referencedColumnName: id
+
