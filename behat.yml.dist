@@ -1,0 +1,24 @@
+default:
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: app/autoload_behat.php
+                class: AppKernel
+                env: test
+        Behat\MinkExtension:
+            default_session: 'symfony2'
+            base_url: 'http://localhost'
+            sessions:
+                symfony2:
+                    symfony2: ~
+        Sanpi\Behatch\Extension: ~
+    suites:
+        phpchallengetodobundle:
+            type: symfony_bundle
+            bundle: 'PhpChallengeTodoBundle'
+            paths: [ %paths.base%/src/PhpChallenge/Bundle/TodoBundle/Features ]
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - behatch:rest
+                - behatch:json
+

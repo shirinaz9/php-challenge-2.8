@@ -8,6 +8,14 @@ framework:
     profiler:
         collect: false
 
+doctrine:
+    dbal:
+        connections:
+            default:
+                dbname: %database_name%_test
+                options:
+                    1002: 'SET SESSION wait_timeout=600;'
+
 web_profiler:
     toolbar: false
     intercept_redirects: false

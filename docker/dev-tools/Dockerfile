@@ -10,6 +10,7 @@ RUN PACKAGES="\
         php-xml \
         php-curl \
         php-dom \
+        php-mbstring \
         wget \
         zip \
         unzip \
