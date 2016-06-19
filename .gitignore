@@ -9,4 +9,10 @@
 /build/
 /vendor/
 /bin/
-/composer.phar
+/phpspec.yml
+/phpunit.xml
+/behat.yml
+/app/config/parameters.yml
+/coverage
+/bower_components
+/node_modules

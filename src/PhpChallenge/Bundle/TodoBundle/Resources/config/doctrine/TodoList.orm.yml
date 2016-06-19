@@ -1,0 +1,8 @@
+PhpChallenge\Bundle\TodoBundle\Entity\TodoItem:
+    type:  entity
+    table: todo_item
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
