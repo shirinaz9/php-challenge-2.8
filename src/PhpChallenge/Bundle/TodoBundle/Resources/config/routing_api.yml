@@ -1,0 +1,13 @@
+php_challenge_api_todo_list_get:
+  path: /list.json
+  defaults: { _controller: php_challenge_todo.controller.api:getListAction }
+
+php_challenge_api_todo_list_item_get:
+  path: /list/item/{itemId}.json
+  defaults: { _controller: php_challenge_todo.controller.api:getListItemAction }
+
+php_challenge_api_todo_list_item_post:
+  path: /list/item.json
+  methods: [ POST ]
+  defaults: { _controller: php_challenge_todo.controller.api:createListItemAction }
+

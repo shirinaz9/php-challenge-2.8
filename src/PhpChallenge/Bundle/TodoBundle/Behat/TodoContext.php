@@ -8,6 +8,7 @@ use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Client;
 
 class TodoContext extends RawMinkContext implements KernelAwareContext, Context, SnippetAcceptingContext
@@ -76,9 +77,13 @@ class TodoContext extends RawMinkContext implements KernelAwareContext, Context,
      */
     public function emptyDatabase()
     {
+        /** @var EntityManager $em */
         $em = $this->getService('doctrine')->getManager();
+        $em->getConnection()->query('SET foreign_key_checks = 0;');
         $purger = new ORMPurger($em);
+        $purger->setPurgeMode(ORMPurger::PURGE_MODE_TRUNCATE);
         $purger->purge();
+        $em->getConnection()->query('SET foreign_key_checks = 1;');
     }
 
 }

@@ -1,0 +1,6 @@
+PhpChallenge\Bundle\TodoBundle\Entity\TodoItem:
+    properties:
+        description:
+            - NotBlank: ~
+        status:
+            - NotBlank: ~

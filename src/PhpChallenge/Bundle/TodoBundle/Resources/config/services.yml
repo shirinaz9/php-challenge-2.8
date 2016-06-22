@@ -1,8 +1,9 @@
 services:
-  php_challenge_todo.controller.rest:
-    class: PhpChallenge\Bundle\TodoBundle\Controller\RestController
+  php_challenge_todo.controller.api:
+    class: PhpChallenge\Bundle\TodoBundle\Controller\ApiController
     arguments:
       - '@php_challenge_todo.repository.todolist'
+      - '@php_challenge_todo.repository.todoitem'
     calls:
       - [setContainer, ['@service_container']]
 

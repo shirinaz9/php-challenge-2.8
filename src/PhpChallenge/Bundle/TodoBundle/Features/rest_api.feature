@@ -29,3 +29,20 @@ Feature: Todo List REST API
     And I set header "X-AUTH-TOKEN" to "abc123"
     When I send "GET" request to "/api/list.json"
     And print last JSON response
+    And the JSON node "id" should exist
+    And the JSON node "items" should exist
+    And the JSON node "items" should have 0 elements
+
+#  Scenario: Create todo list item while being authenticated should succeed
+#    Given I am authenticated as user "test user" with token "abc123"
+#    And I set header "X-AUTH-TOKEN" to "abc123"
+#    When I send "POST" request to "/api/list/item.json"
+#    """
+#      {
+#
+#      }
+#    """
+#    And print last JSON response
+#    And the JSON node "id" should exist
+#    And the JSON node "items" should exist
+#    And the JSON node "items" should have 0 elements

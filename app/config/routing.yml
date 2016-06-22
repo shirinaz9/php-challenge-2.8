@@ -2,6 +2,11 @@ php_challenge_todo:
     resource: "@PhpChallengeTodoBundle/Resources/config/routing.yml"
     prefix:   /
 
+php_challenge_todo_api:
+    resource: "@PhpChallengeTodoBundle/Resources/config/routing_api.yml"
+    prefix:   /api
+    defaults: { _format: json }
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
