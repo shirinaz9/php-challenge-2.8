@@ -23,7 +23,7 @@ class TodoContext extends RawMinkContext implements KernelAwareContext, Context,
      */
     public function iSetHeaderValue($header, $headerValue)
     {
-        $this->serverParameters['HTTP_'.$header] = $headerValue;
+        $this->serverParameters[$header] = $headerValue;
     }
 
     /**

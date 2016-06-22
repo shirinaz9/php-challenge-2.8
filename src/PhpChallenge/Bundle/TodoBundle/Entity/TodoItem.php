@@ -1,6 +1,8 @@
 <?php
 namespace PhpChallenge\Bundle\TodoBundle\Entity;
 
+use PhpChallenge\Component\Todo\TodoListInterface;
+
 class TodoItem extends \PhpChallenge\Component\Todo\TodoItem
 {
     protected $id;
@@ -24,5 +26,19 @@ class TodoItem extends \PhpChallenge\Component\Todo\TodoItem
         return $this;
     }
 
-    
+    /**
+     * @return TodoListInterface
+     */
+    public function getList()
+    {
+        return $this->list;
+    }
+
+    /**
+     * @param TodoListInterface $list
+     */
+    public function setList(TodoListInterface $list)
+    {
+        $this->list = $list;
+    }
 }

@@ -1,6 +1,8 @@
 PhpChallenge\Bundle\UserBundle\Entity\User:
-    exclusion_policy: ALL
-    properties:
-        id:
-           expose: true
-           type: integer
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+      type: integer
+    username:
+      expose: true

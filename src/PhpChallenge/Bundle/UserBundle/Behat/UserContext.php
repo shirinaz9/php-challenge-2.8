@@ -7,6 +7,7 @@ use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Model\UserInterface;
+use PhpChallenge\Bundle\TodoBundle\Entity\TodoList;
 use PhpChallenge\Bundle\UserBundle\Entity\User;
 
 class UserContext extends RawMinkContext implements KernelAwareContext, Context
@@ -61,8 +62,12 @@ class UserContext extends RawMinkContext implements KernelAwareContext, Context
         $user->setPassword('testpass');
         $user->setUsername($username);
         $user->setApiToken($apiToken);
-        
+
+        $list = new TodoList();
+        $list->setOwner($user);
+
         $em->persist($user);
+        $em->persist($list);
         $em->flush();
 
         return $user;

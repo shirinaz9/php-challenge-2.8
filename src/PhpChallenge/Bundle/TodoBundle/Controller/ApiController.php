@@ -9,6 +9,7 @@ use PhpChallenge\Bundle\TodoBundle\Entity\TodoItem;
 use PhpChallenge\Bundle\TodoBundle\Entity\TodoList;
 use PhpChallenge\Bundle\TodoBundle\Form\Type\TodoItemFormType;
 use PhpChallenge\Bundle\UserBundle\Entity\User;
+use PhpChallenge\Component\Todo\TodoListInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -100,13 +101,21 @@ class ApiController extends FOSRestController
         $form = $this->createForm(TodoItemFormType::class, $item);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            dump($form->getData());
-            dump('totes valid');
-            die();
-        }
-        dump((string)$form->getErrors());
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            /** @var TodoListInterface $list */
+            $list = $this->todoListRepository->findOneBy(['owner' => $user->getId()]);
 
-        die('not valid');
-        //return $this->handleView($this->view($item));
+            $item->setList($list);
+            $list->addItem($item);
+
+            $em = $this->getDoctrine()->getManagerForClass('PhpChallenge\Bundle\TodoBundle\Entity\TodoItem');
+            $em->persist($list);
+            $em->persist($item);
+            $em->flush();
+
+            return $this->handleView($this->view($item, 201));
+        }
+
+        return $this->handleView($this->view($form));
     }
 }

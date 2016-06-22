@@ -83,6 +83,9 @@ jms_serializer:
     metadata:
         auto_detection: true
         directories:
+            FosUserBundle:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "%kernel.root_dir%/Resources/config/serializer"
             PhpChallengeTodoBundle:
                 namespace_prefix: "PhpChallenge\\Bundle\\TodoBundle"
                 path: "@PhpChallengeUserBundle/Resources/config/serializer"
