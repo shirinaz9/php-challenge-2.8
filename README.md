@@ -28,19 +28,6 @@ Dev-tools is for accessing composer and other utilities
 5. app/console doctrine:schema:update --force
 6. app/console doctrine:schema:update --force --env=test
 
-completed:
-============
-1. set up docker environment
-2. set up todo/user bundles
-3. automatically create a list when a user joins
-
-todo:
-============
-
-1. create & test rest apis
-2. put authentication in front of rest apis
-3. create interface for todo list
-
 known issues:
 ============
 

@@ -87,8 +87,6 @@ $(document).ready(function() {
       success: function(data) {
         var items = [];
 
-        console.log(data);
-
         items.push('<li id="item-' + data.id + '" class="'+data.status+'">' +
           '<span class="description">' + data.description + '</span>' +
           '<input type="checkbox" id="'+data.id+'" class="toggle-status" '+(data.status == "completed" ? "checked" : "")+'  />' +
@@ -96,6 +94,7 @@ $(document).ready(function() {
           '</li>');
 
         $('#todolist').append( items.join(''));
+        $('#create_item').val('');
       },
       error: function() {
         $('#flash_message').html('could not create todo item');
@@ -132,19 +131,4 @@ $(document).ready(function() {
       xhr.setRequestHeader('X-AUTH-TOKEN', apiToken);
     }
   });
-
-  // $.getJSON('api/list.json'+apiToken, function(data) {
-  //   console.log(data);
-  //   var items = [];
-  //
-  //   $.each(data, function(key, val) {
-  //     items.push('<li id="' + key + '">' + val + '</li>');
-  //   });
-  //
-  //   $('<ul/>', {
-  //     'class': 'my-new-list',
-  //     html: items.join('')
-  //   }).appendTo('body');
-  // });
-
 });
