@@ -1,12 +1,16 @@
 <?php
 namespace PhpChallenge\Bundle\TodoBundle\Entity;
 
+use Gedmo\SoftDeleteable\SoftDeleteable;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use PhpChallenge\Component\Todo\TodoListInterface;
 
-class TodoItem extends \PhpChallenge\Component\Todo\TodoItem
+class TodoItem extends \PhpChallenge\Component\Todo\TodoItem implements SoftDeleteable
 {
     protected $id;
     protected $list;
+
+    use SoftDeleteableEntity;
 
     /**
      * @return int

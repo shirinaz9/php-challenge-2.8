@@ -9,8 +9,10 @@ use PhpChallenge\Bundle\TodoBundle\Entity\TodoItem;
 use PhpChallenge\Bundle\TodoBundle\Entity\TodoList;
 use PhpChallenge\Bundle\TodoBundle\Form\Type\TodoItemFormType;
 use PhpChallenge\Bundle\UserBundle\Entity\User;
+use PhpChallenge\Component\Todo\TodoItemInterface;
 use PhpChallenge\Component\Todo\TodoListInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -98,7 +100,7 @@ class ApiController extends FOSRestController
     {
         $item = new TodoItem();
 
-        $form = $this->createForm(TodoItemFormType::class, $item);
+        $form = $this->createForm(TodoItemFormType::class, $item, ['method' => 'POST']);
         $form->handleRequest($request);
         if ($form->isValid()) {
             $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -117,5 +119,43 @@ class ApiController extends FOSRestController
         }
 
         return $this->handleView($this->view($form));
+    }
+
+    public function updateListItemAction(Request $request, $itemId)
+    {
+        /** @var TodoItem $item */
+        $item = $this->todoListItemRepository->find($itemId);
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if ($item->getList()->getOwner() != $user) {
+            return $this->handleView($this->view(null, 404));
+        }
+
+        $form = $this->createForm(TodoItemFormType::class, $item, ['method' => 'PUT']);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManagerForClass('PhpChallenge\Bundle\TodoBundle\Entity\TodoItem');
+            $em->persist($item);
+            $em->flush();
+
+            return $this->handleView($this->view($item, 201));
+        }
+
+        return $this->handleView($this->view($form));
+    }
+
+    public function deleteListItemAction(Request $request, $itemId)
+    {
+        /** @var TodoItem $item */
+        $item = $this->todoListItemRepository->find($itemId);
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if ($item->getList()->getOwner() != $user) {
+            return $this->handleView($this->view(null, 404));
+        }
+
+        $em = $this->getDoctrine()->getManagerForClass('PhpChallenge\Bundle\TodoBundle\Entity\TodoItem');
+        $em->remove($item);
+        $em->flush();
+
+        return $this->handleView($this->view(null, 204));
     }
 }

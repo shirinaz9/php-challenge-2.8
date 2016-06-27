@@ -70,13 +70,3 @@ Feature: Todo List REST API
     And the JSON node "description" should exist
     And the JSON node "description" should be equal to "test item"
     And the JSON node "list" should exist
-
-  @authentication @success
-  Scenario: Retrieve todo list while being authenticated should succeed
-    Given I am authenticated as user "test user" with token "abc123"
-    And I set header "HTTP_X-AUTH-TOKEN" to "abc123"
-    When I send "GET" request to "/api/list.json"
-    And print last JSON response
-    And the JSON node "id" should exist
-    And the JSON node "items" should exist
-    And the JSON node "items" should have 1 elements

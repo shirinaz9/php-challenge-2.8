@@ -69,7 +69,6 @@ class UserContext extends RawMinkContext implements KernelAwareContext, Context
         $em->persist($user);
         $em->persist($list);
         $em->flush();
-
         return $user;
     }
 }
