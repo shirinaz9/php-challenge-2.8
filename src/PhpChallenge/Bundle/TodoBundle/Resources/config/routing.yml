@@ -1,0 +1,7 @@
+php_challenge_todo_homepage:
+    path:     /
+    defaults: { _controller: PhpChallengeTodoBundle:Default:index }
+
+php_challenge_todo_list:
+    path:     /list
+    defaults: { _controller: PhpChallengeTodoBundle:Default:list }

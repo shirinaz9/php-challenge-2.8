@@ -1,0 +1,41 @@
+php:
+    build: docker/php-fpm
+    command: "php -S 0.0.0.0:80 -t web web/app_dev.php"
+    ports:
+        - "8081:80"
+    volumes_from:
+        - sync
+    working_dir: /var/www
+    links:
+        - db:db
+        - sync:sync
+    environment:
+        APPLICATION_ENV: dev
+    stdin_open: true
+    tty: true
+db:
+    image: mysql
+    ports:
+        - "3307:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: symfony
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+sync:
+    build: docker/sync
+    command: "lsyncd -delay 1 -nodaemon -rsync /src /var/www"
+    volumes:
+        - /var/www
+        - "./:/src"
+    working_dir: /src
+    stdin_open: true
+tools:
+    build: docker/dev-tools
+    volumes_from:
+        - sync
+    working_dir: /src
+    links:
+        - db:db
+        - sync:sync
+    stdin_open: true

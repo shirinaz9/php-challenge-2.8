@@ -1,0 +1,29 @@
+services:
+  php_challenge_todo.controller.api:
+    class: PhpChallenge\Bundle\TodoBundle\Controller\ApiController
+    arguments:
+      - '@php_challenge_todo.repository.todolist'
+      - '@php_challenge_todo.repository.todoitem'
+    calls:
+      - [setContainer, ['@service_container']]
+
+  php_challenge_todo.repository.todolist:
+      class: Doctrine\ORM\EntityRepository
+      factory_service: doctrine.orm.default_entity_manager
+      factory_method: getRepository
+      arguments:
+          - PhpChallenge\Bundle\TodoBundle\Entity\TodoList
+
+  php_challenge_todo.repository.todoitem:
+      class: Doctrine\ORM\EntityRepository
+      factory_service: doctrine.orm.default_entity_manager
+      factory_method: getRepository
+      arguments:
+          - PhpChallenge\Bundle\TodoBundle\Entity\TodoItem
+
+  php_challenge_todo.user_event_listener:
+      class: PhpChallenge\Bundle\TodoBundle\EventListener\UserEventListener
+      arguments:
+          - '@doctrine.orm.entity_manager'
+      tags:
+          - { name: kernel.event_subscriber }

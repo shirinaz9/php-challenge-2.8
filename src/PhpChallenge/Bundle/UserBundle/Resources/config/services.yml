@@ -1,0 +1,14 @@
+services:
+  fos_user.util.user_manipulator:
+    class: PhpChallenge\Bundle\UserBundle\Util\UserManipulator
+    arguments: ['@fos_user.user_manager', '@fos_user.util.token_generator']
+
+  phpchallenge_user_bundle.token_authenticator:
+    class: PhpChallenge\Bundle\UserBundle\Security\TokenAuthenticator
+    arguments: ['@doctrine.orm.entity_manager']
+
+  phpchallenge_user_bundle.user_listener:
+    class: PhpChallenge\Bundle\UserBundle\EventListener\UserListener
+    arguments: [@router]
+    tags:
+        - { name: kernel.event_subscriber }

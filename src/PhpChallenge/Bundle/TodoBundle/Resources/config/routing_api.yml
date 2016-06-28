@@ -1,0 +1,23 @@
+php_challenge_api_todo_list_get:
+  path: /list.json
+  defaults: { _controller: php_challenge_todo.controller.api:getListAction }
+
+php_challenge_api_todo_list_item_get:
+  path: /list/item/{itemId}.json
+  methods: [ GET ]
+  defaults: { _controller: php_challenge_todo.controller.api:getListItemAction }
+
+php_challenge_api_todo_list_item_post:
+  path: /list/item.json
+  methods: [ POST ]
+  defaults: { _controller: php_challenge_todo.controller.api:createListItemAction }
+
+php_challenge_api_todo_list_item_update:
+  path: /list/item/{itemId}.json
+  methods: [ PUT ]
+  defaults: { _controller: php_challenge_todo.controller.api:updateListItemAction }
+
+php_challenge_api_todo_list_item_delete:
+  path: /list/item/{itemId}.json
+  methods: [ DELETE ]
+  defaults: { _controller: php_challenge_todo.controller.api:deleteListItemAction }

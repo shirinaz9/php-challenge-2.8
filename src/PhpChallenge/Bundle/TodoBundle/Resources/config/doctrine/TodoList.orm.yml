@@ -1,0 +1,18 @@
+PhpChallenge\Bundle\TodoBundle\Entity\TodoList:
+    type:  entity
+    table: todo_list
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    oneToMany:
+        items:
+            targetEntity: PhpChallenge\Bundle\TodoBundle\Entity\TodoItem
+            mappedBy: list
+    oneToOne:
+        owner:
+            targetEntity: PhpChallenge\Bundle\UserBundle\Entity\User
+            joinColumn:
+              name: user_id
+              referencedColumnName: id

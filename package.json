@@ -1,0 +1,24 @@
+{
+  "name": "php challenge",
+  "version": "1.0.0",
+  "description": "php challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jared-fraser/php-challenge-2.8.git"
+  },
+  "private": true,
+  "author": "Jared Fraser <jared.fraser@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jared-fraser/php-challenge-2.8/issues"
+  },
+  "homepage": "https://github.com/jared-fraser/php-challenge-2.8#readme",
+  "devDependencies": {
+    "webpack": "^1.13.1"
+  }
+}

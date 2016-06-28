@@ -1,0 +1,10 @@
+PhpChallenge\Bundle\TodoBundle\Entity\TodoItem:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+      type: integer
+    description:
+      expose: true
+    status:
+      expose: true
