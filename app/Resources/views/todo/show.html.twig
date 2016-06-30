@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="event-show">
+    <header id="menu">
+        <a class="link" href="{{ path('todo_index') }}">&larr; back to the events list</a>
+    </header>
+
+    <article>
+        <section>
+            <h1>
+                {{ todo.task }}
+                <a class="button" href="{{ path('todo_edit', {'id': todo.id}) }}">Edit</a>
+            </h1>
+
+            <dl>
+                <dt>Detailed:</dt>
+                <dd>{{ todo.description }}</dd>
+
+                <dt>when:</dt>
+                <dd>{% if todo.time %}{{ todo.time|date('Y-m-d H:i:s') }}{% endif %}</dd>
+
+                <dt>finished</dt>
+                <dd>{% if todo.completed %}Yes{% else %}No{% endif %}</dd>
+
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+
+
+            </dl>
+        </section>
+    </article>
+</section>
+
+
+{% endblock %}

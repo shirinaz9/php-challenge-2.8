@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Todo creation</h1>
+<section class="event-show event-edit">
+    <header id="menu">
+        <a class="link" href="{{ path('todo_index') }}">&larr; back to the event list</a>
+    </header>
+    <article>
+        <section>
+            {# the opening <form> tag #}
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <h1>
+                {{ form_errors(form.task) }}
+                {{ form_widget(form.task) }}
+            </h1>
+
+            <dl>
+                <dt>Detail:</dt>
+                <dd>
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description) }}
+                </dd>
+
+                <dt>when:</dt>
+                <dd>
+                    {{ form_errors(form.time) }}
+                    {{ form_widget(form.time) }}
+                </dd>
+                <dt>finished</dt>
+                <dd>
+                    {{ form_errors(form.completed) }}
+                    {{ form_widget(form.completed) }}
+                </dd>
+
+
+                <input type="submit" value="Create" />
+
+            </dl>
+
+            {# the closing </form> tag #}
+            {{ form_end(form) }}
+        </section>
+    </article>
+</section>
+{% endblock %}

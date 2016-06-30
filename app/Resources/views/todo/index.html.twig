@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="events">
+    <header id="menu">
+        <a class="link" href="{{ path('fos_user_registration_register') }}">Register</a>
+        <a class="button" href="{{ path('todo_new') }}">Create new Task</a>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a class="link" href="{{ path('fos_user_security_logout') }}">
+                Logout {{ app.user.username }}
+            </a>
+        {% else %}
+            <a class="link" href="{{ path('fos_user_security_login') }}">Login</a>
+
+        {% endif %}
+    </header>
+
+    <table>
+
+        <tbody>
+        {% for todo in todos %}
+        <article>
+            <section>
+                <h3>
+                    <a href="{{ path('todo_show', { 'id': todo.id }) }}">{{ todo.id }}</a>
+                </h3>
+
+                <dl>
+                    <dt>Task :</dt>
+                    <dd>{{ todo.task }}</dd>
+
+                    <dt>Details:</dt>
+                    <dd>{{ todo.description }}</dd>
+
+                    <dt>when:</dt>
+                    <dd>{% if todo.time %}{{ todo.time|date('Y-m-d H:i:s') }}{% endif %}</dd>
+
+                    <dt>finished</dt>
+                    <dd>{% if todo.completed %}Yes{% else %}No{% endif %}</dd>
+                </dl>
+            </section>
+        </article>
+
+        {% endfor %}
+        </tbody>
+    </table>
+        </section>
+{% endblock %}
