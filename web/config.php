@@ -61,7 +61,7 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
             }
             .sf-reset ul a,
             .sf-reset ul a:hover {
-                background: url(../images/blue-arrow.png) no-repeat right 6px;
+
                 padding-right: 10px;
             }
             .sf-reset ul, ol {
@@ -76,9 +76,7 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
             .sf-reset ul li {
                 list-style-type: none;
             }
-            .sf-reset .symfony-blocks-install {
-                overflow: hidden;
-            }
+
             .sf-reset .symfony-install-continue {
                 font-size: 0.95em;
                 padding-left: 0;
@@ -95,6 +93,10 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
             }
             .sf-reset .ko {
                 background-color: #d66;
+            }
+            .sf-reset p.help {
+                padding: 12px 16px;
+
             }
             .version {
                 text-align: right;
@@ -159,7 +161,9 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
                             <p>Major problems have been detected and <strong>must</strong> be fixed before continuing:</p>
                             <ol>
                                 <?php foreach ($majorProblems as $problem): ?>
-                                    <li><?php echo $problem->getHelpHtml() ?></li>
+                                    <li><?php echo $problem->getTestMessage() ?>
+                                        <p class="help"><em><?php echo $problem->getHelpHtml() ?></em></p>
+                                    </li>
                                 <?php endforeach; ?>
                             </ol>
                         <?php endif; ?>
@@ -172,7 +176,9 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
                             </p>
                             <ol>
                                 <?php foreach ($minorProblems as $problem): ?>
-                                    <li><?php echo $problem->getHelpHtml() ?></li>
+                                    <li><?php echo $problem->getTestMessage() ?>
+                                        <p class="help"><em><?php echo $problem->getHelpHtml() ?></em></p>
+                                    </li>
                                 <?php endforeach; ?>
                             </ol>
                         <?php endif; ?>
