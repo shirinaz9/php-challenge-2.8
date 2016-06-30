@@ -1,0 +1,7 @@
+todo_todo:
+    resource: "@TodoBundle/Resources/config/routing/todo.yml"
+    prefix:   /
+
+todo_homepage:
+    path:     /
+    defaults: { _controller: TodoBundle:Default:index }

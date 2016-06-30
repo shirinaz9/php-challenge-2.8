@@ -1,0 +1,24 @@
+todo_index:
+    path:     /
+    defaults: { _controller: "TodoBundle:Todo:index" }
+    methods:  GET
+
+todo_show:
+    path:     /{id}/show
+    defaults: { _controller: "TodoBundle:Todo:show" }
+    methods:  GET
+
+todo_new:
+    path:     /new
+    defaults: { _controller: "TodoBundle:Todo:new" }
+    methods:  [GET, POST]
+
+todo_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "TodoBundle:Todo:edit" }
+    methods:  [GET, POST]
+
+todo_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "TodoBundle:Todo:delete" }
+    methods:  DELETE
