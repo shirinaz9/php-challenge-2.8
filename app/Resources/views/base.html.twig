@@ -2,8 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}RedEye Challenge{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/todo/css/event.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/todo/css/events.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/todo/css/main.css') }}" />
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>

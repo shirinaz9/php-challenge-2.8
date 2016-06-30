@@ -1,4 +1,10 @@
 challenge_2.8
 =============
+Run composer
 
-A Symfony project created on June 8, 2016, 12:56 am.
+http://localhost:8000/app_dev.php/
+http://localhost:8000/app_dev.php/Login
+http://localhost:8000/app_dev.php/registration
+
+
+in symfony 2 database,two table has been created todo(for tasks) and users
